@@ -1,21 +1,78 @@
+@font-face {
+  font-family: "MabryDeezer";
+  font-weight: 300;
+  font-style: light;
+  font-display: auto;
+  unicode-range: U+000-5FF;
+  src: local("MabryDeezer-Light"),
+    url("../fonts/MabryDeezer/MabryDeezer-Light.woff2") format("woff2"),
+    url("../fonts/MabryDeezer/MabryDeezer-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "MabryDeezer";
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  unicode-range: U+000-5FF;
+  src: local("MabryDeezer-Regular"),
+    url("../fonts/MabryDeezer/MabryDeezer-Regular.woff2") format("woff2"),
+    url("../fonts/MabryDeezer/MabryDeezer-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "MabryDeezer";
+  font-weight: 500;
+  font-style: medium;
+  font-display: auto;
+  unicode-range: U+000-5FF;
+  src: local("MabryDeezer-Medium"),
+    url("../fonts/MabryDeezer/MabryDeezer-Medium.woff2") format("woff2"),
+    url("../fonts/MabryDeezer/MabryDeezer-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "MabryDeezer";
+  font-weight: 700;
+  font-style: bold;
+  font-display: auto;
+  unicode-range: U+000-5FF;
+  src: local("MabryDeezer-Bold"),
+    url("../fonts/MabryDeezer/MabryDeezer-Bold.woff2") format("woff2"),
+    url("../fonts/MabryDeezer/MabryDeezer-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "MabryDeezer";
+  font-weight: 900;
+  font-style: black;
+  font-display: auto;
+  unicode-range: U+000-5FF;
+  src: local("MabryDeezer-Black"),
+    url("../fonts/MabryDeezer/MabryDeezer-Black.woff2") format("woff2"),
+    url("../fonts/MabryDeezer/MabryDeezer-Black.woff") format("woff");
+}
+
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
+.navbar-brand {
+  font-family: "MabryDeezer";
+    font-weight: 900;
+    font-size: 1.8em;
+}
+
+
+/*@media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
@@ -23,4 +80,4 @@ a {
     color: white;
     background: black;
   }
-}
+}*/
