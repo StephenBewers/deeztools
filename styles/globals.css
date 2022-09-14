@@ -65,6 +65,11 @@ body {
   box-sizing: border-box;
 }
 
+main {
+  background-image: url("/background.webp");
+  background-repeat: repeat;
+}
+
 .navbar-brand {
   font-family: "MabryDeezer";
     font-weight: 900;
