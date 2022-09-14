@@ -5,11 +5,14 @@ import { slide as Menu } from "react-burger-menu";
 const BurgerMenu = (props) => {
   return (
     <Menu>
-      <Link href="/" passHref>
-        <a className="bm-item">List playlists with song</a>
+      <Link href="/most-represented-artists" passHref>
+        <a className="bm-item">Most represented artists</a>
       </Link>
-      <Link href="/" passHref>
-        <a className="bm-item">Replace song in playlists</a>
+      <Link href="/list-playlists-containing" passHref>
+        <a className="bm-item">List playlists containing</a>
+      </Link>
+      <Link href="/replace-songs" passHref>
+        <a className="bm-item">Replace songs</a>
       </Link>
     </Menu>
   );

@@ -14,7 +14,7 @@ const Document = () => {
           rel="stylesheet"
         />
       </Head>
-      <body className="px-0 vh-100 d-flex flex-column">
+      <body>
         <Main />
         <NextScript />
       </body>

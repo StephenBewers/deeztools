@@ -2,6 +2,9 @@ import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import BurgerMenu from "./burgerMenu";
 import styles from "../styles/NavBar.module.css";
+import Image from "next/image";
+
+/**/
 
 const NavBar = () => {
   return (
@@ -13,7 +16,7 @@ const NavBar = () => {
         </Navbar.Brand>
         <Nav className="justify-content-end">
           <Nav.Item>
-            <Nav.Link href="/">Sign in with Deezer</Nav.Link>
+          <Nav.Link href="/">Sign in with Deezer</Nav.Link>
           </Nav.Item>
         </Nav>
       </Container>

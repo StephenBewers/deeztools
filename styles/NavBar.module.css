@@ -2,4 +2,9 @@
   transform: translateX(-50%);
   left: 50%;
   position: absolute;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.navbarBrand:hover {
+  opacity: 80%;
 }
