@@ -5,7 +5,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import styles from "../styles/ListPlaylists.module.css";
 
 const ListPlaylistsContainingPage = () => {
   const [signedIn, setSignedIn] = useState(false);
@@ -79,10 +78,12 @@ const ListPlaylistsContainingPage = () => {
           content="Lists all of your Deezer playlists containing a particular song or artist"
         />
       </Head>
+
       <h1 className="pb-3">List playlists containing</h1>
       <p>Enter the artist name, or ID, to see all playlists containing that artist.</p>
       <p>Enter the artist name and song name, or just the song ID, to see all playlists containing that song.</p>
       <p>By default this tool will only list your own playlists. Use the toggle switch to include added playlists as well.</p>
+
       <Form className="my-5">
         <fieldset className="mb-3">
           <legend>Artist</legend>

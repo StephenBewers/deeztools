@@ -1,0 +1,4 @@
+.playlist-selector {
+    max-height: 452px;
+    overflow-y: auto;
+}
