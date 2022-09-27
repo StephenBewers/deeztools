@@ -1,3 +1,8 @@
+.navbar {
+  min-height: 56px;
+  z-index: 1000;
+}
+
 .navbarBrand {
   transform: translateX(-50%);
   left: 50%;
@@ -7,4 +12,29 @@
 
 .navbarBrand:hover {
   opacity: 80%;
+}
+
+.navBarBrand-homepage {
+  font-size: inherit;
+  margin-top: inherit;
+  margin-bottom: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  margin-block-start: inherit;
+  margin-block-end: inherit;
+}
+
+.dropdown {
+  height: 32px;
+  width: 32px;
+}
+
+.dropdown-image {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
+
+.dropdown-menu {
+  box-shadow: 0px 4px 4px #333;
 }

@@ -1,13 +1,9 @@
 import Head from "next/head";
 import { useState } from "react";
-import Table from "react-bootstrap/Table";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import ListGroup from "react-bootstrap/ListGroup";
+import { Table, Form, Button, ListGroup } from "react-bootstrap";
 import styles from "../styles/MostRepresentedArtists.module.css";
 
 const MostRepresentedArtistsPage = () => {
-  const [signedIn, setSignedIn] = useState(false);
   const [showPlaylistOptions, setShowPlaylistOptions] = useState(false);
 
   const artists = [

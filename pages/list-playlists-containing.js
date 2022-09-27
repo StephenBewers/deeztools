@@ -1,13 +1,8 @@
 import Head from "next/head";
 import { useState } from "react";
-import ListGroup from "react-bootstrap/ListGroup";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { ListGroup, Form, Button, Row, Col } from "react-bootstrap";
 
 const ListPlaylistsContainingPage = () => {
-  const [signedIn, setSignedIn] = useState(false);
 
   const user = { id: 2 };
 

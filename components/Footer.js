@@ -8,7 +8,7 @@ const Footer = () => {
           <Container fluid>
             <span className="small text-muted">
               Copyright © 2022{" "}
-              <a href="https://stephenbewers.com/">Stephen Bewers</a>
+              <a href="https://stephenbewers.com/" target="_blank" rel="noreferrer">Stephen Bewers</a>
             </span>
           </Container>
         </footer>

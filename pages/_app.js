@@ -5,13 +5,15 @@ import Head from "next/head";
 import Layout from "../components/layout";
 
 const MyApp = ({ Component, pageProps }) => {
+  const isSignedIn = true;
+
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
+      <Layout isSignedIn={isSignedIn}>
+        <Component {...pageProps} isSignedIn={isSignedIn} />
       </Layout>
     </>
   );
