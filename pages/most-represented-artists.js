@@ -1,9 +1,12 @@
 import Head from "next/head";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 import { Table, Form, Button, ListGroup } from "react-bootstrap";
+import SignInBtn from "../components/SignInBtn";
 import styles from "../styles/MostRepresentedArtists.module.css";
 
 const MostRepresentedArtistsPage = () => {
+  const { data: session, status } = useSession();
   const [showPlaylistOptions, setShowPlaylistOptions] = useState(false);
 
   const artists = [
@@ -79,7 +82,7 @@ const MostRepresentedArtistsPage = () => {
     } else {
       setShowPlaylistOptions(false);
     }
-  }
+  };
 
   // Renders the list of playlists to select if the user wants to select which playlists to include
   const renderPlaylistsToSelect = (showPlaylistOptions, playlists) => {
@@ -107,9 +110,68 @@ const MostRepresentedArtistsPage = () => {
             })}
           </ListGroup>
         </div>
-      )
+      );
     }
-  }
+  };
+
+  const renderMostRepresentedArtistsTool = (status) => {
+    // If signed in, render the tool
+    if (status === "authenticated") {
+      return (
+        <>
+          <p>
+            Choose which playlists you want to see your most represented artists
+            for.
+          </p>
+
+          <Form className="mb-5">
+            <Form.Select aria-label="" className="mb-3" onChange={onChange}>
+              <option value="all">All playlists I&apos;ve created</option>
+              <option value="selected">Selected playlists only</option>
+              <option value="favourites">My favourite tracks</option>
+            </Form.Select>
+
+            {renderPlaylistsToSelect(showPlaylistOptions, playlists)}
+
+            <Button variant="primary" type="submit" className="mt-3">
+              Submit
+            </Button>
+          </Form>
+
+          <div className="py-4">
+            <h2 className="mb-3">Total: {artists.length}</h2>
+            <Table striped bordered hover responsive size="sm" className="mb-4">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Artist</th>
+                  <th>Playlists</th>
+                  <th>Songs</th>
+                </tr>
+              </thead>
+              <tbody>
+                {artists.map((artist, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>1</td>
+                      <td>{artist.name}</td>
+                      <td>{artist.playlistCount}</td>
+                      <td>{artist.songCount}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          </div>
+        </>
+      );
+    }
+
+    // Else show the sign in button
+    else {
+      return <SignInBtn></SignInBtn>;
+    }
+  };
 
   return (
     <>
@@ -121,53 +183,14 @@ const MostRepresentedArtistsPage = () => {
         />
       </Head>
 
-      <h1 className="pb-3">Most represented artists</h1>
-      <p>
-        Choose which playlists you want to see your most represented artists
-        for.
-      </p>
-
-      <Form className="mb-5">
-        <Form.Select aria-label="" className="mb-3" onChange={onChange}>
-          <option value="all">All playlists I&apos;ve created</option>
-          <option value="selected">Selected playlists only</option>
-          <option value="favourites">My favourite tracks</option>
-        </Form.Select>
-
-        {renderPlaylistsToSelect(showPlaylistOptions, playlists)}
-
-        <Button variant="primary" type="submit" className="mt-3">
-          Submit
-        </Button>
-      </Form>
-
-      <div className="py-4">
-        <h2 className="mb-3">Total: {artists.length}</h2>
-        <Table striped bordered hover responsive size="sm" className="mb-4">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Artist</th>
-              <th>Playlists</th>
-              <th>Songs</th>
-            </tr>
-          </thead>
-          <tbody>
-            {artists.map((artist, i) => {
-              return (
-                <tr key={i}>
-                  <td>1</td>
-                  <td>{artist.name}</td>
-                  <td>{artist.playlistCount}</td>
-                  <td>{artist.songCount}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+      <div className="container">
+        <h1 className="pb-3">Most represented artists</h1>
+        {renderMostRepresentedArtistsTool(status)}
       </div>
     </>
   );
 };
+
+MostRepresentedArtistsPage.layout = "default";
 
 export default MostRepresentedArtistsPage;

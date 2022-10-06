@@ -1,10 +1,10 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useSession } from "next-auth/react";
 import { ListGroup, Form, Button, Row, Col } from "react-bootstrap";
+import SignInBtn from "../components/SignInBtn";
 
 const ListPlaylistsContainingPage = () => {
-
-  const user = { id: 2 };
+  const { data: session, status } = useSession();
 
   const playlists = [
     {
@@ -64,6 +64,96 @@ const ListPlaylistsContainingPage = () => {
     },
   ];
 
+  const renderListPlaylistsContainingTool = (status) => {
+    // If signed in, render the tool
+    if (status === "authenticated") {
+      return (
+        <>
+          <p>
+            Enter the artist name, or ID, to see all playlists containing that
+            artist.
+          </p>
+          <p>
+            Enter the artist name and song name, or just the song ID, to see all
+            playlists containing that song.
+          </p>
+          <p>
+            By default this tool will only list your own playlists. Use the
+            toggle switch to include added playlists as well.
+          </p>
+
+          <Form className="my-5">
+            <fieldset className="mb-3">
+              <legend>Artist</legend>
+              <Row>
+                <Col md={10} className="mb-2">
+                  <Form.Group controlId="artist-name">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control type="text" />
+                  </Form.Group>
+                </Col>
+                <Form.Group as={Col} controlId="artist-id">
+                  <Form.Label>ID</Form.Label>
+                  <Form.Control type="number" />
+                </Form.Group>
+              </Row>
+            </fieldset>
+
+            <fieldset className="mb-3">
+              <legend>Song</legend>
+              <Row>
+                <Col md={10} className="mb-2">
+                  <Form.Group controlId="song-title">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" />
+                  </Form.Group>
+                </Col>
+                <Form.Group as={Col} controlId="song-id">
+                  <Form.Label>ID</Form.Label>
+                  <Form.Control type="number" />
+                </Form.Group>
+              </Row>
+            </fieldset>
+
+            <Form.Check
+              className="py-2"
+              type="switch"
+              id="include-added-playlists"
+              label="Include added playlists"
+            />
+
+            <Button variant="primary" type="submit" className="mt-3">
+              Submit
+            </Button>
+          </Form>
+
+          <div className="py-4">
+            <h2 className="mb-3">Total: {playlists.length}</h2>
+            <ListGroup className="mb-4">
+              {playlists.map((playlist, i) => {
+                return (
+                  <ListGroup.Item
+                    key={i}
+                    action
+                    href={playlist.link}
+                    target="_blank"
+                  >
+                    {playlist.title}
+                  </ListGroup.Item>
+                );
+              })}
+            </ListGroup>
+          </div>
+        </>
+      );
+    }
+
+    // Else show the sign in button
+    else {
+      return <SignInBtn></SignInBtn>;
+    }
+  };
+
   return (
     <>
       <Head>
@@ -74,70 +164,14 @@ const ListPlaylistsContainingPage = () => {
         />
       </Head>
 
-      <h1 className="pb-3">List playlists containing</h1>
-      <p>Enter the artist name, or ID, to see all playlists containing that artist.</p>
-      <p>Enter the artist name and song name, or just the song ID, to see all playlists containing that song.</p>
-      <p>By default this tool will only list your own playlists. Use the toggle switch to include added playlists as well.</p>
-
-      <Form className="my-5">
-        <fieldset className="mb-3">
-          <legend>Artist</legend>
-          <Row>
-            <Col md={10} className="mb-2">
-              <Form.Group controlId="artist-name">
-                <Form.Label>Name</Form.Label>
-                <Form.Control type="text" />
-              </Form.Group>
-            </Col>
-            <Form.Group as={Col} controlId="artist-id">
-              <Form.Label>ID</Form.Label>
-              <Form.Control type="number" />
-            </Form.Group>
-          </Row>
-        </fieldset>
-
-        <fieldset className="mb-3">
-          <legend>Song</legend>
-          <Row>
-            <Col md={10} className="mb-2">
-              <Form.Group controlId="song-title">
-                <Form.Label>Title</Form.Label>
-                <Form.Control type="text" />
-              </Form.Group>
-            </Col>
-            <Form.Group as={Col} controlId="song-id">
-              <Form.Label>ID</Form.Label>
-              <Form.Control type="number" />
-            </Form.Group>
-          </Row>
-        </fieldset>
-
-        <Form.Check
-          className="py-2"
-          type="switch"
-          id="include-added-playlists"
-          label="Include added playlists"
-        />
-
-        <Button variant="primary" type="submit" className="mt-3">
-          Submit
-        </Button>
-      </Form>
-
-      <div className="py-4">
-      <h2 className="mb-3">Total: {playlists.length}</h2>
-      <ListGroup className="mb-4">
-        {playlists.map((playlist, i) => {
-          return (
-            <ListGroup.Item key={i} action href={playlist.link} target="_blank">
-              {playlist.title}
-            </ListGroup.Item>
-          );
-        })}
-      </ListGroup>
+      <div className="container">
+        <h1 className="pb-3">List playlists containing</h1>
+        {renderListPlaylistsContainingTool(status)}
       </div>
     </>
   );
 };
+
+ListPlaylistsContainingPage.layout = "default";
 
 export default ListPlaylistsContainingPage;

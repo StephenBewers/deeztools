@@ -1,6 +1,7 @@
 .navbar {
   min-height: 56px;
   z-index: 1000;
+  width: 100% !important; /* Needed as React-Bootstrap sets width to 100vw, causing nav to fall behind vertical scrollbar */
 }
 
 .navbarBrand {

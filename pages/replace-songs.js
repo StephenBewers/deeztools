@@ -21,4 +21,6 @@ const ReplaceSongsPage = () => {
   );
 };
 
+ReplaceSongsPage.layout = "default";
+
 export default ReplaceSongsPage;

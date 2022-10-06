@@ -1,21 +1,31 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.css";
-import '../styles/burger-menu.css';
+import "../styles/burger-menu.css";
 import Head from "next/head";
-import Layout from "../components/layout";
+import LayoutDefault from "../components/LayoutDefault";
+import LayoutSignin from "../components/LayoutSignin";
+import SSRProvider from "react-bootstrap/SSRProvider";
+import { SessionProvider } from "next-auth/react";
 
-const MyApp = ({ Component, pageProps }) => {
-  const isSignedIn = true;
+const layouts = {
+  default: LayoutDefault,
+  signin: LayoutSignin,
+};
+
+const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
+  const Layout = layouts[Component.layout] || ((children) => <>{children}</>);
 
   return (
-    <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-      <Layout isSignedIn={isSignedIn}>
-        <Component {...pageProps} isSignedIn={isSignedIn} />
-      </Layout>
-    </>
+    <SessionProvider session={session}>
+      <SSRProvider>
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </SSRProvider>
+    </SessionProvider>
   );
 };
 
